@@ -1,12 +1,24 @@
-# pragh-simple-prcess
+# graph-simple-process
 
-使用预定义模板处理图片
+## Project setup
+```
+npm install
+```
 
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
+### Compiles and minifies for production
+```
+npm run build
+```
 
-## use
+### Lints and fixes files
+```
+npm run lint
+```
 
-vue3
-
-element-plus
-
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).
