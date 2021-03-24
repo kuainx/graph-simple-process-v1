@@ -5,6 +5,7 @@
 	"layer": [
 		{
 			"id": 1,
+			"name": "底图",
 			"type": "staticImage",
 			"left": 0,
 			"right": 0,
@@ -14,6 +15,7 @@
 		},
 		{
 			"id": 2,
+			"name": "图片1",
 			"type": "userImage",
 			"left": 923,
 			"right": 812,
