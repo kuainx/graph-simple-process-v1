@@ -1,5 +1,5 @@
 <template>
-  <el-upload :auto-upload="false" drag action="" :multiple="false"
+  <el-upload :auto-upload="false" drag :multiple="false" action=""
              accept=".template" :show-file-list="false" :onChange="onFileSelected">
     <i class="el-icon-set-up"></i>
     <div class="el-upload__text">将文件拖到此处，或<em>点击选择文件</em></div>
@@ -23,11 +23,11 @@
 
 <script>
 import {reactive, toRefs} from "vue";
-
+import { ElNotification } from 'element-plus';
 export default {
   name: "Step1",
-  emits: ['next'],
-  setup(props, {emit}) {
+  emits: ["next"],
+  setup: function (props, {emit}) {
     let tempObj = null;
     const state = reactive({
       dialogVisible: false,
@@ -35,7 +35,7 @@ export default {
     });
     const onFileSelected = (file) => {
       if (!/\.template$/i.test(file.name)) {
-        this.$notify.error({
+        ElNotification.error({
           title: "错误",
           message: "选择的不是.template文件",
         });
@@ -44,11 +44,11 @@ export default {
         reader.readAsText(file.raw);
         reader.onload = () => {
           tempObj = JSON.parse(reader.result);
-          if (tempObj.thumb) {
+          if (tempObj.thumb && tempObj.layer) {
             state.thumb = tempObj.thumb;
             state.dialogVisible = true;
           } else {
-            this.$notify.error({
+            ElNotification.error({
               title: "错误",
               message: "该template文件已损坏",
             });
