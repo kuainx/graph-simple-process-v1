@@ -7,8 +7,8 @@
 			"id": 1,
 			"name": "底图",
 			"type": "staticImage",
-			"left": 0,
-			"right": 0,
+			"x": 0,
+			"y": 0,
 			"width": 1334,
 			"height": 1334,
 			"url": "https://cdn-1251935573.cos.ap-chengdu.myqcloud.com/gsp/c740/1.png"
@@ -17,8 +17,8 @@
 			"id": 2,
 			"name": "图片1",
 			"type": "userImage",
-			"left": 923,
-			"right": 812,
+			"x": 923,
+			"y": 812,
 			"height": 240,
 			"width": 240
 		}

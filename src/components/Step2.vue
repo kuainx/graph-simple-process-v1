@@ -34,6 +34,7 @@
 <script>
 import {reactive, toRefs} from "vue";
 import {ElNotification} from "element-plus";
+import {Blob2DataUrl} from "@/components/blob";
 
 export default {
   name: "Step2",
@@ -71,18 +72,14 @@ export default {
         inputFile(index, file);
       };
     };
-    const inputFile = (index, file) => {
+    const inputFile = async (index, file) => {
       console.log(index, file);
-      const reader = new FileReader();
-      reader.readAsDataURL(file.raw);
-      reader.onload = () => {
-        state.userImage = reader.result;
-        state.confirmImage = () => {
-          state.template.layer[index].data = reader.result;
-          state.dialogVisible = false;
-        };
-        state.dialogVisible = true;
+      state.userImage = await Blob2DataUrl(file.raw);
+      state.confirmImage = () => {
+        state.template.layer[index].data = state.userImage;
+        state.dialogVisible = false;
       };
+      state.dialogVisible = true;
     };
     return {
       onFileSelected,
