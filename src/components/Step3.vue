@@ -24,9 +24,9 @@ export default {
       template: props.template,
       img: "",
     });
-    const getImageDOM = async (url, width, height) => {
+    const getImageDOM = async (url) => {
       return new Promise(function (resolve) {
-        const image = new Image(width, height);
+        const image = new Image();
         image.src = url;
         image.onload = function () {
           resolve(image);
@@ -48,9 +48,10 @@ export default {
                 message: item.name + "资源加载失败，错误信息：" + e,
               });
               console.log(e);
+              return;
             }
           }
-          item.raw = await getImageDOM(item.data, item.width, item.height);
+          item.raw = await getImageDOM(item.data);
         }
       }
       state.status = "生成图像";
@@ -61,8 +62,7 @@ export default {
       for (const key in template.layer) {
         const item = template.layer[key];
         if (item.type === "staticImage" || item.type === "userImage") {
-          // console.log(item.raw);
-          ctx.drawImage(item.raw, item.x, item.y);
+          ctx.drawImage(item.raw, item.x, item.y, item.width, item.height);
         }
       }
       state.status = "";

@@ -1,8 +1,19 @@
-module.exports={
-	publicPath:"./",
-	productionSourceMap:false,
+module.exports = {
+	publicPath: "./",
+	productionSourceMap: false,
 	chainWebpack: config => {
-		// 修复HMR
 		config.resolve.symlinks(true);
 	},
-}
+	devServer: {
+		proxy: {
+			"/api": {
+				target: "http://demo.ekuai.tech/",
+				changeOrigin: true,
+				pathRewrite: {
+					"^/api": "",
+				},
+			},
+		},
+	},
+
+};

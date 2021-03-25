@@ -1,7 +1,7 @@
 {
 	"width": 1334,
 	"height": 1334,
-	"thumb": "//cdn-1251935573.cos.ap-chengdu.myqcloud.com/gsp/c740/1.png",
+	"thumb": "/api/cdn/c740/1.png",
 	"layer": [
 		{
 			"id": 1,
@@ -11,7 +11,7 @@
 			"y": 0,
 			"width": 1334,
 			"height": 1334,
-			"url": "//cdn-1251935573.cos.ap-chengdu.myqcloud.com/gsp/c740/1.png"
+			"url": "/api/cdn/c740/1.png"
 		},
 		{
 			"id": 2,
