@@ -1,11 +1,11 @@
 <template>
-  <div class="render-container">
-    <h3 v-if="status">{{ status }}</h3>
-    <img :src="img" alt="" class="render">
-  </div>
   <div class="download-btn">
     <el-button type="success" round v-if="img" @click="downloadImg">下载<i class="el-icon-download el-icon--right"></i>
     </el-button>
+  </div>
+  <div class="render-container">
+    <h3 v-if="status">{{ status }}</h3>
+    <img :src="img" alt="" class="render">
   </div>
 </template>
 
@@ -24,28 +24,33 @@ export default {
       template: props.template,
       img: "",
     });
-
+    const getImageDOM = async (url, width, height) => {
+      return new Promise(function (resolve) {
+        const image = new Image(width, height);
+        image.src = url;
+        image.onload = function () {
+          resolve(image);
+        };
+      });
+    };
     const startUp = async () => {
       const template = state.template;
       for (const key in template.layer) {
         const item = template.layer[key];
         if (item.type === "staticImage" || item.type === "userImage") {
-          const image = new Image(item.width, item.height);
           if (!item.data) {
             try {
               const blob = await getBlob(item.url);
               item.data = await Blob2DataUrl(blob);
             } catch (e) {
-              console.log(e);
               ElNotification.error({
                 title: "错误",
-                message: item.name + "资源加载失败",
+                message: item.name + "资源加载失败，错误信息：" + e,
               });
               console.log(e);
             }
           }
-          image.src = item.data;
-          item.raw = image;
+          item.raw = await getImageDOM(item.data, item.width, item.height);
         }
       }
       state.status = "生成图像";
@@ -56,6 +61,7 @@ export default {
       for (const key in template.layer) {
         const item = template.layer[key];
         if (item.type === "staticImage" || item.type === "userImage") {
+          // console.log(item.raw);
           ctx.drawImage(item.raw, item.x, item.y);
         }
       }
