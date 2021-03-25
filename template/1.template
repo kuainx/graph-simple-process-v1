@@ -1,7 +1,7 @@
 {
 	"width": 1334,
 	"height": 1334,
-	"thumb": "https://cdn-1251935573.cos.ap-chengdu.myqcloud.com/gsp/c740/1.png",
+	"thumb": "//cdn-1251935573.cos.ap-chengdu.myqcloud.com/gsp/c740/1.png",
 	"layer": [
 		{
 			"id": 1,
@@ -11,7 +11,7 @@
 			"y": 0,
 			"width": 1334,
 			"height": 1334,
-			"url": "https://cdn-1251935573.cos.ap-chengdu.myqcloud.com/gsp/c740/1.png"
+			"url": "//cdn-1251935573.cos.ap-chengdu.myqcloud.com/gsp/c740/1.png"
 		},
 		{
 			"id": 2,

@@ -13,6 +13,7 @@
 import {reactive, toRefs} from "vue";
 import {getBlob} from "@/components/ajax";
 import {Blob2DataUrl} from "@/components/blob";
+import {ElNotification} from "element-plus";
 
 export default {
   name: "Step3",
@@ -31,9 +32,17 @@ export default {
         if (item.type === "staticImage" || item.type === "userImage") {
           const image = new Image(item.width, item.height);
           if (!item.data) {
-            const blob = await getBlob(item.url);
-            item.data = await Blob2DataUrl(blob);
-            // console.log(item.name, item.data);
+            try {
+              const blob = await getBlob(item.url);
+              item.data = await Blob2DataUrl(blob);
+            } catch (e) {
+              console.log(e);
+              ElNotification.error({
+                title: "错误",
+                message: item.name + "资源加载失败",
+              });
+              console.log(e);
+            }
           }
           image.src = item.data;
           item.raw = image;
