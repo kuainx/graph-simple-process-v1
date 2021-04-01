@@ -90,8 +90,8 @@ export default {
 }
 
 .render-container {
-  max-height: 500px;
-  overflow: auto;
+  /*max-height: 500px;*/
+  /*overflow: auto;*/
 }
 
 .download-btn {
